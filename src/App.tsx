@@ -99,20 +99,28 @@ const projects = [
    Contact data
    ========================= */
 
-const contactLinks = [
-  {
-    label: "GitHub",
-    url: "https://github.com/jb-pryor",
-  },
-  {
-    label: "Email",
-    url: "mailto:jpryor35@icloud.com",
-  },
-  {
-    label: "Current portfolio",
-    url: "https://jbpryor.com",
-  },
-];
+   const contactLinks = [
+    {
+      label: "GitHub",
+      url: "https://github.com/jb-pryor",
+      icon: "GitHub",
+    },
+    {
+      label: "LinkedIn",
+      url: "https://www.linkedin.com/in/james-pryor-571b3a2ab/",
+      icon: "LinkedIn",
+    },
+    {
+      label: "Resume",
+      url: "/resume.pdf",
+      icon: "Resume",
+    },
+    {
+      label: "Email",
+      url: "mailto:jpryor35@icloud.com",
+      icon: "Email",
+    },
+  ];
 
 function ContactPreviewIcon({ name }: { name: string }) {
   if (name === "GitHub") {
@@ -385,6 +393,28 @@ function DesktopWindow({
     );
   }
 
+  function ContactLinkIcon({ name }: { name: string }) {
+    if (name === "Resume") {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M12 3v12" />
+          <path d="m7 10 5 5 5-5" />
+          <path d="M4 17v4h16v-4" />
+        </svg>
+      );
+    }
+  
+    return <ContactPreviewIcon name={name} />;
+  }
+
   /* =========================
    Main application
    ========================= */
@@ -561,42 +591,58 @@ export default function App() {
         title="Contact"
         dialogRef={contactRef}
       >
-        <h3>Let’s connect.</h3>
+        <div className="contact-layout">
+          {/* Left column: portrait and personal details. */}
+          <div className="contact-profile">
+            <img
+              className="contact-photo"
+              src="/profile.jpg"
+              alt="James Pryor"
+            />
 
-        <p>
-          Have an opportunity or want to talk about a project?
-        </p>
+            <h3 className="contact-name">
+              James Benjamin Pryor
+            </h3>
 
-        <div className="grid gap-3">
-          {contactLinks.map(({ label, url }) => (
-            <a
-              key={label}
-              href={url}
-              target={
-                url.startsWith("https")
-                  ? "_blank"
-                  : undefined
-              }
-              rel="noopener noreferrer"
-              className="
-                rounded-lg
-                border
-                border-white/20
-                p-4
-                text-white
-                no-underline
-                transition-colors
-                hover:bg-white/10
-              "
+            <p className="contact-nickname">(JB)</p>
+
+            <p className="contact-location">
+              San Diego, CA
+            </p>
+          </div>
+
+          {/* Right column: links and icons. */}
+          <div className="contact-details">
+            <h3 className="contact-heading">
+              My Links:
+            </h3>
+
+            <nav
+              className="contact-menu"
+              aria-label="Contact links"
             >
-              {label} ↗
-            </a>
-          ))}
-        </div>
+              {contactLinks.map(({ label, url, icon }) => (
+                <a
+                  key={label}
+                  className="contact-menu-link"
+                  href={url}
+                  target={
+                    url.startsWith("mailto:")
+                      ? undefined
+                      : "_blank"
+                  }
+                  rel="noopener noreferrer"
+                >
+                  <span className="contact-menu-icon">
+                    <ContactLinkIcon name={icon} />
+                  </span>
 
-        <p className="note">
-          Add your LinkedIn URL and resume PDF links here.
-        </p>
+                  <span>{label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
       </DesktopWindow>
     </>
   );
