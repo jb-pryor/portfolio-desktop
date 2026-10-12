@@ -674,7 +674,7 @@ dialog {
     align-items: center;
     gap: 8px;
   
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
   
@@ -692,3 +692,31 @@ dialog {
       display: none;
     }
   }
+
+  /* Contact icons inside the animated preview cards. */
+.preview.preview-contact {
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+/* GitHub card. */
+.preview.preview-contact:nth-child(1) {
+  background: #24292f;
+}
+
+/* LinkedIn card. */
+.preview.preview-contact:nth-child(2) {
+  background: #0a66c2;
+}
+
+/* Email card. */
+.preview.preview-contact:nth-child(3) {
+  background: #f3eee5;
+  color: #333;
+}
+
+.preview-contact svg {
+  width: 28px;
+  height: 28px;
+}
