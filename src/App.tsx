@@ -1,5 +1,7 @@
 import {
+  useEffect,
   useRef,
+  useState,
   type MouseEvent,
   type ReactNode,
   type RefObject,
@@ -211,8 +213,132 @@ function DesktopWindow({
     </dialog>
   );
 }
-
+   
 /* =========================
+   Desktop status bar
+   ========================= */
+
+   function DesktopStatus() {
+    const [now, setNow] = useState(() => new Date());
+  
+    // Update the clock, and clean up when the component unmounts.
+    useEffect(() => {
+      const timer = window.setInterval(() => {
+        setNow(new Date());
+      }, 1000);
+  
+      return () => window.clearInterval(timer);
+    }, []);
+  
+    // Uses the visitor's local time zone.
+    const date = now.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+  
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  
+    return (
+      <div className="desktop-status">
+        {/* Decorative battery icon — not the visitor's actual battery. */}
+        <span
+          className="status-icon"
+          title="Decorative battery indicator"
+        >
+          <svg
+            width="29"
+            height="18"
+            viewBox="0 0 29 18"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect
+              x="1"
+              y="3"
+              width="23"
+              height="12"
+              rx="3"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+  
+            <rect
+              x="3.5"
+              y="5.5"
+              width="16"
+              height="7"
+              rx="1"
+              fill="currentColor"
+            />
+  
+            <path
+              d="M26 7V11"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </span>
+  
+        {/* Decorative Wi-Fi icon. */}
+        <span
+          className="status-icon"
+          title="Decorative Wi-Fi indicator"
+        >
+          <svg
+            width="22"
+            height="18"
+            viewBox="0 0 24 20"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 5C7.5 0.5 16.5 0.5 22 5"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+  
+            <path
+              d="M5.5 9C9 6 15 6 18.5 9"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+  
+            <path
+              d="M9 13C10.8 11.5 13.2 11.5 15 13"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+  
+            <circle
+              cx="12"
+              cy="17"
+              r="1.5"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+  
+        {/* Actual date and time. */}
+        <time
+          className="desktop-clock"
+          dateTime={now.toISOString()}
+        >
+          <span className="desktop-date">{date}</span>
+          <span>{time}</span>
+        </time>
+      </div>
+    );
+  }
+
+  /* =========================
    Main application
    ========================= */
 
@@ -241,7 +367,8 @@ export default function App() {
 
       <header className="menu-bar">
         <strong>JB / Portfolio</strong>
-        <span>San Diego, CA</span>
+
+        <DesktopStatus />
       </header>
 
       {/* =========================
@@ -252,7 +379,7 @@ export default function App() {
         <section className="intro">
           <h1>Hi, I’m James Pryor.</h1>
 
-          <p>Software developer · Curious builder</p>
+          <p>Software developer</p>
 
           {/* Contact folder centered underneath the introduction. */}
           <div className="intro-contact">
