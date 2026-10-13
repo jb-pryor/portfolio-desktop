@@ -52,8 +52,6 @@ const folders: FolderData[] = [
     label: "About",
     previews: [
       "AboutMe.txt",
-      "PLNU · 2026",
-      "San Diego",
     ],
   },
   {
@@ -560,14 +558,14 @@ export default function App() {
           A bit about me.
         </h3>
 
-        <p>
+        <p className="about-p">
           I’m James (JB), a software developer based in
           San Diego. I graduated from Point Loma Nazarene
           University in May 2026 with a B.S. in Computer
           Science: Software Engineering.
         </p>
 
-        <p>
+        <p className="about-p">
           I build web applications and developer tools
           using React, TypeScript, Python, and C++. My
           recent work includes a job-tracking API,
@@ -575,7 +573,7 @@ export default function App() {
           dashboard for PLNU.
         </p>
 
-        <p>
+        <p className="about-p">
           I’m looking for a software engineering role
           where I can contribute, keep learning, and
           work with a good team.

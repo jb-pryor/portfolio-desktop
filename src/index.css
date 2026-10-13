@@ -502,6 +502,10 @@ h3 {
   font: italic 36px Georgia, serif;
 }
 
+.about-p {
+  margin-top: 10px;
+}
+
 /* =========================
    Mobile layout
    ========================= */
