@@ -844,3 +844,112 @@ dialog {
       font-size: 22px;
     }
   }
+
+  /* Project screenshots inside folder hover previews. */
+.preview.preview-project {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.preview-project img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Project screenshots inside the opened window. */
+.project .thumbnail {
+  height: 140px;
+  padding: 0;
+}
+
+.project .thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Give website screenshots a wider column. */
+.project {
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* Screenshot frame. */
+.project-demo {
+  position: relative;
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+  border-radius: 10px;
+  background: #151515;
+  border: 1px solid #ffffff20;
+  text-decoration: none;
+}
+
+/* Show the entire screenshot without stretching or cropping. */
+.project-demo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transition: transform 0.3s ease;
+}
+
+/* Dark overlay with centered text. */
+.project-demo-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  background: #0007;
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.project-demo-overlay span {
+  padding: 10px 16px;
+  border: 1px solid #ffffff70;
+  border-radius: 8px;
+  background: #1119;
+
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Slightly enlarge the image on hover or keyboard focus. */
+a.project-demo:is(:hover, :focus-visible) img {
+  transform: scale(1.04);
+}
+
+a.project-demo:is(:hover, :focus-visible) .project-demo-overlay {
+  opacity: 1;
+}
+
+/* Show the label on touch devices, which have no hover. */
+@media (hover: none) {
+  .project-demo-overlay {
+    opacity: 1;
+    background: #0003;
+  }
+}
+
+/* Stack the screenshot above the description on smaller screens. */
+@media (max-width: 700px) {
+  .project {
+    grid-template-columns: 1fr;
+  }
+}

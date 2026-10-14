@@ -76,6 +76,8 @@ const projects = [
     description:
       "A REST API for managing job applications, with JWT authentication, registration, and per-user access control.",
     url: "https://github.com/jb-pryor/job-tracker-api",
+    image: "/projects/jobtracker.png",
+    demoUrl: "https://spotify-wrap-clone.vercel.app",
   },
   {
     title: "Spotify Rewind",
@@ -83,6 +85,8 @@ const projects = [
     description:
       "Personalized listening insights using the Spotify Web API, OAuth, and reusable React components.",
     url: "https://github.com/jb-pryor",
+    image: "/projects/spotify.png",
+    demoUrl: "https://spotify-wrap-clone.vercel.app",
   },
   {
     title: "KPI Dashboard",
@@ -90,6 +94,8 @@ const projects = [
     description:
       "A dashboard built for PLNU’s Director of Institutional Research to explore departmental metrics and multi-year trends.",
     url: "https://github.com/jb-pryor",
+    image: "/projects/proj1.png",
+    demoUrl: "",
   },
 ];
 
@@ -177,18 +183,25 @@ function ContactPreviewIcon({ name }: { name: string }) {
         aria-haspopup="dialog"
         aria-label={`Open ${label}`}
       >
-        {previews.map((text) => (
+        {previews.map((text, index) => (
           <span
             key={text}
             className={
               isContact
                 ? "preview preview-contact"
-                : "preview"
+                : label === "Projects"
+                  ? "preview preview-project"
+                  : "preview"
             }
             aria-hidden="true"
           >
             {isContact ? (
               <ContactPreviewIcon name={text} />
+            ) : label === "Projects" && projects[index] ? (
+              <img
+                src={projects[index].image}
+                alt=""
+              />
             ) : (
               text
             )}
@@ -516,9 +529,31 @@ export default function App() {
             className="project"
             key={project.title}
           >
-            <div className="thumbnail">
-              {project.title}
-            </div>
+            {project.demoUrl ? (
+              <a
+                className="project-demo"
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title} live demo`}
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                />
+
+                <span className="project-demo-overlay" aria-hidden="true">
+                  <span>Live demo ↗</span>
+                </span>
+              </a>
+            ) : (
+              <div className="project-demo">
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                />
+              </div>
+            )}
 
             <div>
               <h3>{project.title}</h3>
