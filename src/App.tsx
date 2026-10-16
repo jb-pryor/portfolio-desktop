@@ -71,10 +71,9 @@ const folders: FolderData[] = [
 
 const projects = [
   {
-    title: "Job Tracker API",
-    stack: "Python / FastAPI / PostgreSQL",
-    description:
-      "A REST API for managing job applications, with JWT authentication, registration, and per-user access control.",
+    title: "Job Tracker",
+    stack: "React / TypeScript / FastAPI / PostgreSQL",
+    description: "A full-stack application for tracking job applications. Built a React interface connected to a FastAPI backend, with account registration, JWT authentication, application filtering, and per-user access control.",
     url: "https://github.com/jb-pryor/job-tracker-api",
     image: "/projects/jobtracker.png",
     demoUrl: "https://spotify-wrap-clone.vercel.app",
