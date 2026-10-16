@@ -984,7 +984,7 @@ dialog[open] {
 
   width: 66px;
   height: 84px;
-  padding: 26px 5px 0;
+  padding: -20px 5px 0;
 
   display: block;
   overflow: hidden;
