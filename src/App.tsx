@@ -96,6 +96,33 @@ const projects = [
     image: "/projects/proj1.png",
     demoUrl: "",
   },
+  {
+    title: "Python AST GitHub Action Analyzer",
+    stack: "Python / AST / GitHub Actions",
+    description:
+      "Built a GitHub Action that analyzes structural changes in Python files using abstract syntax trees. Detects function additions, deletions, and moves to provide more context than a line-by-line diff.",
+    url: "https://github.com/jb-pryor/YOUR-AST-REPOSITORY",
+    image: "/projects/python-ast.png",
+    demoUrl: "",
+  },
+  {
+    title: "Infinite Tile Grid Game",
+    stack: "Java / JavaFX",
+    description:
+      "Developed a tile-based game with an infinitely scrolling grid, edit and play modes, and interactive tiles. Implemented player physics, collision detection, and camera tracking.",
+    url: "https://github.com/jb-pryor/YOUR-GRID-REPOSITORY",
+    image: "/projects/infinite-grid.png",
+    demoUrl: "",
+  },
+  {
+    title: "C++ Dungeon Crawler",
+    stack: "C++ / Raylib / CMake",
+    description:
+      "Built a 2D dungeon crawler with player movement, wall collision, mouse-directed combat, and pursuing enemies. Implemented text-based level loading, directional room transitions, and persistent enemy state across rooms using STL containers.",
+    url: "https://github.com/jb-pryor/YOUR-DUNGEON-REPOSITORY",
+    image: "/projects/dungeon-crawler.png",
+    demoUrl: "",
+  },
 ];
 
 /* =========================
@@ -177,7 +204,11 @@ function ContactPreviewIcon({ name }: { name: string }) {
   
     return (
       <button
-        className="folder"
+        className={
+          label === "About"
+            ? "folder folder-about"
+            : "folder"
+        }
         onClick={onOpen}
         aria-haspopup="dialog"
         aria-label={`Open ${label}`}
@@ -593,24 +624,32 @@ export default function App() {
         </h3>
 
         <p className="about-p">
-          I’m James (JB), a software developer based in
-          San Diego. I graduated from Point Loma Nazarene
-          University in May 2026 with a B.S. in Computer
-          Science: Software Engineering.
+          I’m <strong>James (JB)</strong>, a software developer based in
+          San Diego. I graduated from Point Loma Nazarene University
+          in May 2026 with a <strong>B.S. in Computer Science:
+          Software Engineering</strong>.
         </p>
 
         <p className="about-p">
-          I build web applications and developer tools
-          using React, TypeScript, Python, and C++. My
-          recent work includes a job-tracking API,
-          personalized Spotify analytics, and a client
-          dashboard for PLNU.
+          I build web applications and developer tools using{" "}
+          <strong>React, TypeScript, Python, and C++</strong>.
+          My recent work includes a <strong>job-tracking API</strong>,
+          personalized <strong>Spotify analytics</strong>, and a{" "}
+          <strong>client dashboard for PLNU</strong>.
         </p>
 
         <p className="about-p">
-          I’m looking for a software engineering role
-          where I can contribute, keep learning, and
-          work with a good team.
+          I’m currently building a <strong>2D dungeon crawler</strong>{" "}
+          using <strong>C++ and Raylib</strong>, with room exploration,
+          enemy encounters, and mouse-directed combat. I’m also developing
+          a <strong>gamified to-do list</strong> with React, TypeScript,
+          and CSS for a <strong>Devpost hackathon</strong>, using AI tools
+          to help build and iterate on the app.
+        </p>
+
+        <p className="about-p">
+          I’m looking for a <strong>software engineering role</strong>{" "}
+          where I can contribute, keep learning, and work with a good team.
         </p>
       </DesktopWindow>
 

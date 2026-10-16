@@ -953,3 +953,97 @@ a.project-demo:is(:hover, :focus-visible) .project-demo-overlay {
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep windows within the screen. */
+dialog {
+  max-height: 80svh;
+  overflow: hidden;
+}
+
+/* Apply flex layout only while the window is open. */
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep the title and close button visible while scrolling. */
+.window-bar {
+  flex-shrink: 0;
+}
+
+/* Scroll the content beneath the title bar. */
+.window-body {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* About folder: one centered text-document preview. */
+.folder-about .preview:nth-child(1) {
+  left: 50%;
+  top: 20px;
+
+  width: 66px;
+  height: 84px;
+  padding: 26px 5px 0;
+
+  display: block;
+  overflow: hidden;
+
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  background: #faf9f6;
+  color: #343434;
+
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  text-align: center;
+
+  /* Hidden behind the folder until hover. */
+  opacity: 0;
+  transform: translate(-50%, 10px);
+}
+
+/* Folded corner at the top right. */
+.folder-about .preview::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 15px;
+  height: 15px;
+
+  background: linear-gradient(
+    45deg,
+    #deddd8 50%,
+    #fff 50%
+  );
+
+  border-bottom-left-radius: 3px;
+}
+
+/* Small gray lines resembling document text. */
+.folder-about .preview::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  top: 45px;
+  height: 25px;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    #bcbcbc 0,
+    #bcbcbc 2px,
+    transparent 2px,
+    transparent 7px
+  );
+}
+
+/* Rise straight out of the middle of the folder. */
+.folder-about:is(:hover, :focus-visible) .preview:nth-child(1) {
+  opacity: 1;
+  transform: translate(-50%, -65px);
+  transition-delay: 0s;
+}
