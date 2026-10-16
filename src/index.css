@@ -1047,3 +1047,11 @@ dialog[open] {
   transform: translate(-50%, -65px);
   transition-delay: 0s;
 }
+
+.repo-status {
+  display: inline-block;
+  margin-top: 8px;
+
+  color: #a6aca5;
+  font-size: 13px;
+}

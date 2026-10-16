@@ -74,16 +74,18 @@ const projects = [
     title: "Job Tracker",
     stack: "React / TypeScript / FastAPI / PostgreSQL",
     description: "A full-stack application for tracking job applications. Built a React interface connected to a FastAPI backend, with account registration, JWT authentication, application filtering, and per-user access control.",
-    url: "https://github.com/jb-pryor/job-tracker-api",
+    url: "https://github.com/jb-pryor/job-tracker-web",
+  repoStatus: "public",
     image: "/projects/jobtracker.png",
-    demoUrl: "https://spotify-wrap-clone.vercel.app",
+    demoUrl: "https://job-tracker-web-one.vercel.app/",
   },
   {
     title: "Spotify Rewind",
     stack: "Next.js / React / TypeScript",
     description:
       "Personalized listening insights using the Spotify Web API, OAuth, and reusable React components.",
-    url: "https://github.com/jb-pryor",
+    url: "https://github.com/jb-pryor/spotify-wrap-clone",
+    repoStatus: "public",
     image: "/projects/spotify.png",
     demoUrl: "https://spotify-wrap-clone.vercel.app",
   },
@@ -92,7 +94,8 @@ const projects = [
     stack: "Angular / Tailwind / Google Sheets API",
     description:
       "A dashboard built for PLNU’s Director of Institutional Research to explore departmental metrics and multi-year trends.",
-    url: "https://github.com/jb-pryor",
+    url: "",
+    repoStatus: "private",
     image: "/projects/proj1.png",
     demoUrl: "",
   },
@@ -101,7 +104,8 @@ const projects = [
     stack: "Python / AST / GitHub Actions",
     description:
       "Built a GitHub Action that analyzes structural changes in Python files using abstract syntax trees. Detects function additions, deletions, and moves to provide more context than a line-by-line diff.",
-    url: "https://github.com/jb-pryor/YOUR-AST-REPOSITORY",
+    url: "https://github.com/theCarterDavis/TopicsASTProject",
+    repoStatus: "public",
     image: "/projects/python-ast.png",
     demoUrl: "",
   },
@@ -110,7 +114,8 @@ const projects = [
     stack: "Java / JavaFX",
     description:
       "Developed a tile-based game with an infinitely scrolling grid, edit and play modes, and interactive tiles. Implemented player physics, collision detection, and camera tracking.",
-    url: "https://github.com/jb-pryor/YOUR-GRID-REPOSITORY",
+    url: "",
+    repoStatus: "none",
     image: "/projects/infinite-grid.png",
     demoUrl: "",
   },
@@ -119,7 +124,8 @@ const projects = [
     stack: "C++ / Raylib / CMake",
     description:
       "Built a 2D dungeon crawler with player movement, wall collision, mouse-directed combat, and pursuing enemies. Implemented text-based level loading, directional room transitions, and persistent enemy state across rooms using STL containers.",
-    url: "https://github.com/jb-pryor/YOUR-DUNGEON-REPOSITORY",
+    url: "https://github.com/jb-pryor/dungeon-crawler",
+    repoStatus: "public",
     image: "/projects/dungeon-crawler.png",
     demoUrl: "",
   },
@@ -594,17 +600,20 @@ export default function App() {
 
               <p>{project.description}</p>
 
-              <a
-                className="link"
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {project.url.endsWith("jb-pryor")
-                  ? "Browse GitHub"
-                  : "View source"}
-                {" "}↗
-              </a>
+              {project.repoStatus === "private" ? (
+                <span className="repo-status">Repo Private</span>
+              ) : project.repoStatus === "none" || !project.url ? (
+                <span className="repo-status">No Repo</span>
+              ) : (
+                <a
+                  className="link"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Github ↗
+                </a>
+              )}
             </div>
           </article>
         ))}
